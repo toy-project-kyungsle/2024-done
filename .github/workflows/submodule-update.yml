@@ -1,0 +1,30 @@
+# submodule update workflow
+name: Update Submodule
+
+on:
+  schedule:
+    - cron: '23 0 * * *' # 영국시간으로 매일 0시 5분에 실행
+  workflow_dispatch:
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v2
+      with:
+        persist-credentials: false
+
+    - name: Configure git
+      run: |
+        git config --global user.name 'keinn51'
+        git config --global user.email 'soogood97@gmail.com'
+
+    - name: Update submodule
+      run: |
+        git submodule update --init
+        git submodule update --remote
+        git add .
+        git commit -m "Update submodule" || echo "No changes to commit"
+        git push https://${{ secrets.GH_PAT }}@github.com/toy-project-kyungsle/2024-done.git main
