@@ -1,3 +1,3 @@
-[submodule "json-chat-app"]
-	path = json-chat-app
-	url = https://github.com/toy-project-kyungsle/json-chat-app.git
+[submodule "react-native-chat-app"]
+	path = react-native-chat-app
+	url = https://github.com/toy-project-kyungsle/react-native-chat-app
